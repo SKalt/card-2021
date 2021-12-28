@@ -1,0 +1,30 @@
+{
+  "name": "card-2021",
+  "version": "1.0.0",
+  "description": "2021 holiday card",
+  "scripts": {
+    "dev": "parcel serve --open -- ./src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SKalt/card-2021.git"
+  },
+  "keywords": [
+    "holiday",
+    "card",
+    "cats",
+    "books"
+  ],
+  "author": "Steven Kalt",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/SKalt/card-2021/issues"
+  },
+  "homepage": "https://github.com/SKalt/card-2021#readme",
+  "devDependencies": {
+    "parcel": "^2.0.1",
+    "prettier": "^2.5.1",
+    "sharp": "^0.29.1"
+  }
+}
