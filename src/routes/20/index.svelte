@@ -2,6 +2,7 @@
   import ImgOverlay from "../../components/ImgOverlay.svelte";
   import BookArea from "../../components/BookArea.svelte";
   import { src, width } from "../../img/20.jpg?webp&metadata";
+  import HamburgerNav from "../../components/HamburgerNav.svelte";
   const books: Array<{
     title: string;
     author: string;
@@ -181,7 +182,14 @@
   ];
 </script>
 
-<ImgOverlay {src} mapId="books" pixelWidth={width} alt="TODO">
+<HamburgerNav up="../10/" right="../21/" down="../30/" />
+
+<ImgOverlay
+  {src}
+  mapId="books"
+  pixelWidth={width}
+  alt="Murder, cat-themed murder, and depressing realistic fiction"
+>
   {#each books as book}
     <BookArea title={book.title} author={book.author} coords={book.coords} />
   {/each}

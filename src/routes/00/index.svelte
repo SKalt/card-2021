@@ -4,6 +4,7 @@
   import ImgOverlay from "../../components/ImgOverlay.svelte";
   import BookArea from "../../components/BookArea.svelte";
   import BookReview from "../../components/BookReview.svelte";
+  import HamburgerNav from "../../components/HamburgerNav.svelte";
   import { src, width, height } from "../../img/00.jpg?webp&metadata";
   import { Book, snake_case } from "../common";
 
@@ -22,14 +23,9 @@
   import JourneyToTheCenterOfTheEarth from "../../books/journey_to_the_center_of_the_earth.md";
   import FantasticVoyage from "../../books/fantastic_voyage.md";
 
-  let viewing = "";
-  const setViewing = () => {
-    viewing = window.location.hash.slice(1);
-  };
-  onMount(() => {
-    alert(`${width} x ${height}`);
-    setViewing();
-  });
+  const right = "../01/";
+  const down = "../10/";
+
   const books: Array<Book> = [
     {
       coords: [
@@ -253,7 +249,7 @@
   ];
 </script>
 
-<svelte:window on:hashchange={setViewing} />
+<HamburgerNav {right} {down} />
 <ImgOverlay
   {src}
   mapId="books"
@@ -267,26 +263,8 @@
 
 {#each books as book}
   {#if book.component}
-    <BookReview
-      display={viewing == snake_case(book.title)}
-      title={book.title}
-      author={book.author}
-    >
+    <BookReview title={book.title} author={book.author}>
       <svelte:component this={book.component} />
     </BookReview>
   {/if}
 {/each}
-
-<!-- position: sticky; bottom: 0;
- align-items: center
--->
-<div
-  style="background-color: rgba(256,256,256,.85); height: 100%; padding: .5ch; position: fixed; right: 0; top: 0; display: flex; align-items: flex-start"
->
-  <a href="../01/" style="position: sticky; top: 50%">right</a>
-</div>
-<a
-  class="centered"
-  style="background-color: rgba(256,256,256,.85); position: fixed; bottom: 0; width: 100%; display: flex; justify-content: center"
-  href="../10/">down</a
->

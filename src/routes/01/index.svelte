@@ -3,7 +3,7 @@
   import ImgOverlay from "../../components/ImgOverlay.svelte";
   import BookArea from "../../components/BookArea.svelte";
   import { src, width } from "../../img/01.jpg?webp&metadata";
-
+  import HamburgerNav from "../../components/HamburgerNav.svelte";
   import HardToBeAGod from "../../books/hard_to_be_a_god.md";
   import RoadsidePicnic from "../../books/roadside_picnic.md";
   import TheSnailOnTheSlope from "../../books/the_snail_on_the_slope.md";
@@ -198,3 +198,4 @@
     <BookArea title={book.title} author={book.author} coords={book.coords} />
   {/each}
 </ImgOverlay>
+<HamburgerNav left="../00/" down="../11/" />

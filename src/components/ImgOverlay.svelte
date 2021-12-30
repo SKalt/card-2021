@@ -15,8 +15,8 @@
   let ratio: number = 1;
 
   const handleResize = () => {
-    console.log("resizing", img);
     setRatio(pixelWidth, img?.width || 1);
+    // alert(`resized to ${ratio}`);
     if (canvas) {
       canvas.width = img.width;
       canvas.height = img.height;
@@ -54,6 +54,8 @@
   });
 </script>
 
+<svelte:window on:resize={handleResize} />
+
 <div class="container">
   <map name={mapId}>
     <slot />
@@ -64,7 +66,7 @@
     usemap="#{mapId}"
     on:load={() => {
       handleResize();
-      alert(`${img.width} x ${img.height}`);
+      // alert(`${img.width} x ${img.height}`);
     }}
     on:resize={handleResize}
     on:mousemove={debugMousePosition}

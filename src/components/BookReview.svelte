@@ -1,10 +1,19 @@
 <script lang="ts">
+  import { snake_case } from "../routes/common";
+  import { onMount } from "svelte";
+
   export let title: string;
   export let author = "";
-  export let display = false;
+  let display = false;
+
+  const setDisplay = () => {
+    display = window.location.hash.slice(1) == snake_case(title);
+  };
+  onMount(setDisplay);
+
   const reset = () => {
     display = false;
-    window.history.pushState(
+    window.history.replaceState(
       "",
       document.title,
       window.location.pathname + window.location.search
@@ -12,9 +21,10 @@
   };
 </script>
 
+<svelte:window on:hashchange={setDisplay} />
+
 <div class:display>
-  <!-- TODO: close-input -->
-  <button on:click={reset} class="close"> X </button>
+  <button on:click={reset} class="close">&times</button>
   <h2>{title}</h2>
   {#if author}
     <span>by</span>&nbsp;<b>{author}</b>
@@ -35,6 +45,7 @@
     padding: 2rem;
     max-width: 800px;
     max-height: 400px;
+    width: 80vw;
   }
   h2 {
     margin-top: 0;
