@@ -3,5 +3,3 @@ library:
 ebook:
 goodreads:
 ---
-
-<!-- emma? -->
