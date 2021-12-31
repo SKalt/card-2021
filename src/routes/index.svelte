@@ -99,26 +99,6 @@
     <abbr title="now my fiancee(!)">Emma</abbr> and I spent some of 2021 collecting
     used books.
   </p>
-  <div style="display: none;">
-    <ol>
-      <li>
-        <a href="./00.html">00</a>,
-        <a href="./01.html">01</a>
-      </li>
-      <li>
-        <a href="./10.html">11</a>,
-        <a href="./11.html">11</a>,
-      </li>
-      <li>
-        <a href="./20.html">21</a>,
-        <a href="./21.html">21</a>,
-      </li>
-      <li>
-        <a href="./30.html">30</a>,
-        <!-- <a href="./31.html">31</a>, -->
-      </li>
-    </ol>
-  </div>
 </div>
 
 <ImgOverlay {src} alt="happy holidays" mapId="shelves" pixelWidth={width}>
