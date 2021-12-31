@@ -88,12 +88,6 @@
 
 <div class="message">
   <h2>Happy holidays from Baltimore, MD!</h2>
-  <p>Search the shelves at right for book recommendations for 2022.</p>
-  <p>
-    Click each book for a link to the book's goodreads page and possibly a
-    review.
-  </p>
-  <p>Each shelf has a navigation menu at top-right.</p>
   <p>
     <AccessibleAbbr title="now my fiancee(!)">Emma</AccessibleAbbr> and I spent some
     of the most enjoyable parts of of 2021 browsing Baltimore's used book stores
@@ -101,6 +95,13 @@
     in the stacks!
     <!-- TODO: better message -->
   </p>
+  <p>
+    Search the shelves at right for book recommendations for 2022. You can tell
+    if we recommend a book by hovering over the book: recommended books will
+    have solid outlines. You can also find recommended books by clicking on the
+    book to displaythe book's information.
+  </p>
+  <p>Each shelf has a navigation menu at top-right.</p>
 </div>
 
 <ImgOverlay {src} alt="happy holidays" mapId="shelves" pixelWidth={width}>
