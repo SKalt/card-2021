@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "2021 holiday card",
   "scripts": {
-    "dev": "svelte-kit dev --host",
+    "dev": "svelte-kit dev --host --open",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",

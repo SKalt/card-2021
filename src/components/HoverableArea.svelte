@@ -10,11 +10,9 @@
   const draw: Writable<Array<[number, number]>> = getContext("draw");
   ratioStore.subscribe((r) => (ratio = r));
   const handleMouseEnter = () => {
-    console.log("mouseenter", href);
     draw.set(transformedCoords);
   };
   const handleMouseLeave = () => {
-    console.log("mouseleave", href);
     draw.set([]);
   };
   $: transformedCoords = coords.map(

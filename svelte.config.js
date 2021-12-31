@@ -17,6 +17,7 @@ const config = {
     paths: {
       base: "/2021",
     },
+    trailingSlash: "always",
 
     // hydrate the <div id="svelte"> element in src/app.html
     target: "#svelte",

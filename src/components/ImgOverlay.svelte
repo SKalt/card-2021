@@ -1,8 +1,10 @@
 <script lang="ts">
+  import type { Coords } from "src/routes/common";
+
   import { onMount, getContext, setContext } from "svelte";
   import { writable } from "svelte/store";
-  const draw = writable<Array<[number, number]>>([]);
-  setContext("draw", draw);
+  const canvasShapeStore = writable<Array<[number, number]>>([]);
+  setContext("draw", canvasShapeStore);
   const ratioStore = writable<number>(1);
   setContext("ratioStore", ratioStore);
   export let mapId: string;
@@ -29,10 +31,15 @@
   const setRatio = (pixelWidth: number, screenWidth: number) => {
     ratio = pixelWidth / (screenWidth || 1);
     ratioStore.set(ratio);
+    console.log(`set ratio to ${ratio}`);
   };
-  $: setRatio(pixelWidth, img?.width);
-  $: draw.subscribe((coords) => {
-    if (!canvas) return;
+
+  const redraw = (coords: Coords) => {
+    console.log("redrawing", { coords });
+    if (!canvas) {
+      console.log("missing canvas");
+      return;
+    }
     const ctx = canvas.getContext("2d");
     if (!coords.length)
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -51,6 +58,10 @@
       ctx.closePath();
       ctx.stroke();
     }
+  };
+  canvasShapeStore.subscribe(redraw);
+  onMount(() => {
+    handleResize();
   });
 </script>
 
