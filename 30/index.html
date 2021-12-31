@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="description" content="2021 holiday card" />
-    <link rel="icon" href="./icon.svg" />
+    <link rel="icon" href="/2021/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
 
@@ -29,7 +29,7 @@
 				session: {},
 				route: true,
 				spa: false,
-				trailing_slash: "never",
+				trailing_slash: "always",
 				hydrate: {
 					status: 200,
 					error: null,
@@ -37,7 +37,7 @@
 						import("/2021/_app/layout.svelte-2e5387ef.js"),
 						import("/2021/_app/pages/30/index.svelte-548e88f2.js")
 					],
-					url: new URL("sveltekit://prerender/30"),
+					url: new URL("sveltekit://prerender/30/"),
 					params: {}
 				}
 			});
