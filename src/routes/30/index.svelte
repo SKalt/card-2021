@@ -30,6 +30,7 @@
       title: "Designing Data-Intensive Applications",
       author: "Martin Klepmann",
       component: DesigningData,
+      recommended: true,
     },
     {
       coords: [
@@ -95,6 +96,7 @@
       title: "Being Mortal",
       author: "Atul Gawande",
       component: BeingMortal,
+      recommended: true,
     },
     {
       coords: [
@@ -149,13 +151,17 @@
 <HamburgerNav up="../20/" />
 <ImgOverlay {src} mapId="books" pixelWidth={width} alt="Nonfiction">
   {#each books as book}
-    <BookArea title={book.title} author={book.author} coords={book.coords} />
+    <BookArea {...book} />
   {/each}
 </ImgOverlay>
 
 {#each books as book}
   {#if book.component}
-    <BookReview title={book.title} author={book.author}>
+    <BookReview
+      title={book.title}
+      author={book.author}
+      recommended={book.recommended}
+    >
       <svelte:component this={book.component} />
     </BookReview>
   {/if}

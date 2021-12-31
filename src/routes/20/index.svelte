@@ -64,6 +64,7 @@
       title: "Murder on the Orient Express",
       author: "Agatha Christie",
       component: MurderontheOrientExpress,
+      recommended: true,
     },
     {
       coords: [
@@ -220,13 +221,17 @@
   alt="Murder, cat-themed murder, and depressing realistic fiction"
 >
   {#each books as book}
-    <BookArea title={book.title} author={book.author} coords={book.coords} />
+    <BookArea {...book} />
   {/each}
 </ImgOverlay>
 
 {#each books as book}
   {#if book.component}
-    <BookReview title={book.title} author={book.author}>
+    <BookReview
+      title={book.title}
+      author={book.author}
+      recommended={book.recommended}
+    >
       <svelte:component this={book.component} />
     </BookReview>
   {/if}

@@ -198,14 +198,18 @@
   alt="some great, some awful science fiction"
 >
   {#each books as book}
-    <BookArea title={book.title} author={book.author} coords={book.coords} />
+    <BookArea {...book} />
   {/each}
 </ImgOverlay>
 <HamburgerNav left="../00/" down="../11/" />
 
 {#each books as book}
   {#if book.component}
-    <BookReview title={book.title} author={book.author}>
+    <BookReview
+      title={book.title}
+      author={book.author}
+      recommended={book.recommended}
+    >
       <svelte:component this={book.component} />
     </BookReview>
   {/if}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AccessibleAbbr from "../components/AccessibleAbbr.svelte";
   import ImgOverlay from "../components/ImgOverlay.svelte";
   import HoverableArea from "../components/HoverableArea.svelte";
   import { src, width } from "../img/main.png?format=webp&metadata";
@@ -87,17 +88,18 @@
 
 <div class="message">
   <h2>Happy holidays from Baltimore, MD!</h2>
+  <p>Search the shelves at right for book recommendations for 2022.</p>
   <p>
-    Click the shelves at right for book
-    <abbr
-      title="given my taste for bad sci-fi, not all recommendations are positive"
-      >recommendations</abbr
-    >
-    for 2022.
+    Click each book for a link to the book's goodreads page and possibly a
+    review.
   </p>
+  <p>Each shelf has a navigation menu at top-right.</p>
   <p>
-    <abbr title="now my fiancee(!)">Emma</abbr> and I spent some of 2021 collecting
-    used books.
+    <AccessibleAbbr title="now my fiancee(!)">Emma</AccessibleAbbr> and I spent some
+    of the most enjoyable parts of of 2021 browsing Baltimore's used book stores
+    and sometimes even buying them. I hope this card gives you the feeling of searching
+    in the stacks!
+    <!-- TODO: better message -->
   </p>
 </div>
 

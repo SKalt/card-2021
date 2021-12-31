@@ -4,6 +4,7 @@
 
   export let title: string;
   export let author = "";
+  export let recommended = false;
   let display = false;
 
   const setDisplay = () => {
@@ -23,8 +24,14 @@
 
 <svelte:window on:hashchange={setDisplay} />
 
-<div class:display>
+<div class:display class="container">
   <button on:click={reset} class="close">&times</button>
+
+  {#if recommended}
+    <h3 class="recommended">
+      <b style="width: 100%; text-al"> Recommended: </b>
+    </h3>
+  {/if}
   <h2>{title}</h2>
   {#if author}
     <span>by</span>&nbsp;<b>{author}</b>
@@ -34,7 +41,11 @@
 </div>
 
 <style>
-  div {
+  .recommended {
+    display: flex;
+    align-items: center;
+  }
+  div.container {
     display: none;
     /* centered */
     position: fixed;

@@ -3,15 +3,18 @@
 
   import { onMount, getContext, setContext } from "svelte";
   import { writable } from "svelte/store";
-  const canvasShapeStore = writable<Array<[number, number]>>([]);
-  setContext("draw", canvasShapeStore);
+
   const ratioStore = writable<number>(1);
   setContext("ratioStore", ratioStore);
+
   export let mapId: string;
   export let src: string;
   export let pixelWidth: number;
   export let alt: string;
   let canvas: HTMLCanvasElement;
+  const sharedContext = writable<HTMLCanvasElement>(canvas);
+  setContext("canvasStore", sharedContext);
+  let ctx: CanvasRenderingContext2D;
   let img: HTMLImageElement;
   let dbg: HTMLElement;
   let ratio: number = 1;
@@ -33,35 +36,10 @@
     ratioStore.set(ratio);
     console.log(`set ratio to ${ratio}`);
   };
-
-  const redraw = (coords: Coords) => {
-    console.log("redrawing", { coords });
-    if (!canvas) {
-      console.log("missing canvas");
-      return;
-    }
-    const ctx = canvas.getContext("2d");
-    if (!coords.length)
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    else {
-      const _coords = [...coords];
-      const [x, y] = _coords.pop();
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = "#fff";
-      ctx.moveTo(x, y);
-      ctx.beginPath();
-      while (_coords.length) {
-        let [x, y] = _coords.pop();
-        ctx.lineTo(x, y);
-      }
-      ctx.lineTo(x, y);
-      ctx.closePath();
-      ctx.stroke();
-    }
-  };
-  canvasShapeStore.subscribe(redraw);
+  $: sharedContext.set(canvas);
   onMount(() => {
     handleResize();
+    sharedContext.set(canvas);
   });
 </script>
 
@@ -75,10 +53,7 @@
     {src}
     {alt}
     usemap="#{mapId}"
-    on:load={() => {
-      handleResize();
-      // alert(`${img.width} x ${img.height}`);
-    }}
+    on:load={handleResize}
     on:resize={handleResize}
     on:mousemove={debugMousePosition}
     bind:this={img}

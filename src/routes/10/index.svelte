@@ -206,13 +206,17 @@
   alt="Fantasy of one kind or another"
 >
   {#each books as book}
-    <BookArea title={book.title} author={book.author} coords={book.coords} />
+    <BookArea {...book} />
   {/each}
 </ImgOverlay>
 
 {#each books as book}
   {#if book.component}
-    <BookReview title={book.title} author={book.author}>
+    <BookReview
+      title={book.title}
+      author={book.author}
+      recommended={book.recommended}
+    >
       <svelte:component this={book.component} />
     </BookReview>
   {/if}
