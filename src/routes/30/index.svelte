@@ -1,13 +1,21 @@
 <script lang="ts">
+  import type { Book } from "../common";
   import ImgOverlay from "../../components/ImgOverlay.svelte";
   import BookArea from "../../components/BookArea.svelte";
-  import { src, width } from "../../img/30.jpg?webp&metadata";
   import HamburgerNav from "../../components/HamburgerNav.svelte";
-  const books: Array<{
-    title: string;
-    author: string;
-    coords: Array<[number, number]>;
-  }> = [
+
+  import { src, width } from "../../img/30.jpg?webp&metadata";
+  import DesigningData from "../../books/designing_data_intensive_applications.md";
+  import AndTheBandPlayedOn from "../../books/and_the_band_played_on.md";
+  import SpamNation from "../../books/spam_nation.md";
+  import TheMysteryOfTheExplodingTeet from "../../books/the_mystery_of_the_exploding_teeth.md";
+  import BeingMortal from "../../books/being_mortal.md";
+  import Complications from "../../books/complications.md";
+  import TheEmperorOfAllMaladies from "../../books/the_emperor_of_all_maladies.md";
+  import TheViolinistsThumb from "../../books/the_violinists_thumb.md";
+  import BookReview from "../../components/BookReview.svelte";
+
+  const books: Array<Book> = [
     {
       coords: [
         [549, 147],
@@ -21,6 +29,7 @@
       ],
       title: "Designing Data-Intensive Applications",
       author: "Martin Klepmann",
+      component: DesigningData,
     },
     {
       coords: [
@@ -34,6 +43,7 @@
       ],
       title: "And the Band Played On",
       author: "Randy Shilts",
+      component: AndTheBandPlayedOn,
     },
     {
       coords: [
@@ -49,6 +59,7 @@
       ],
       title: "Spam Nation",
       author: "Brian Krebs",
+      component: SpamNation,
     },
     {
       coords: [
@@ -64,6 +75,7 @@
       ],
       title: "The Mystery of the Exploding Teeth",
       author: "Thomas Morris",
+      component: TheMysteryOfTheExplodingTeet,
     },
     {
       coords: [
@@ -82,6 +94,7 @@
       ],
       title: "Being Mortal",
       author: "Atul Gawande",
+      component: BeingMortal,
     },
     {
       coords: [
@@ -98,6 +111,7 @@
       ],
       title: "Complications",
       author: "Atul Gawande",
+      component: Complications,
     },
     {
       coords: [
@@ -113,6 +127,7 @@
       ],
       title: "The Emperor of All Maladies",
       author: "Siddhartha Mukherjee",
+      component: TheEmperorOfAllMaladies,
     },
     {
       coords: [
@@ -126,6 +141,7 @@
       ],
       title: "The Violinist's Thumb",
       author: "Sam Kean",
+      component: TheViolinistsThumb,
     },
   ];
 </script>
@@ -136,3 +152,11 @@
     <BookArea title={book.title} author={book.author} coords={book.coords} />
   {/each}
 </ImgOverlay>
+
+{#each books as book}
+  {#if book.component}
+    <BookReview title={book.title} author={book.author}>
+      <svelte:component this={book.component} />
+    </BookReview>
+  {/if}
+{/each}

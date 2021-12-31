@@ -1,13 +1,28 @@
 <script lang="ts">
+  import type { Book } from "../common";
   import ImgOverlay from "../../components/ImgOverlay.svelte";
   import BookArea from "../../components/BookArea.svelte";
-  import { src, width } from "../../img/21.jpg?webp&metadata";
   import HamburgerNav from "../../components/HamburgerNav.svelte";
-  const books: Array<{
-    title: string;
-    author: string;
-    coords: Array<[number, number]>;
-  }> = [
+  import BookReview from "../../components/BookReview.svelte";
+
+  import { src, width } from "../../img/21.jpg?webp&metadata";
+
+  import ShipOfTheseus from "../../books/ship_of_theseus.md";
+  import Catch22 from "../../books/catch_22.md";
+  import PrideAndPrejudice from "../../books/pride_and_prejudice.md";
+  import Dracula from "../../books/dracula.md";
+  import WutheringHeights from "../../books/wuthering_heights.md";
+  import TheGreatGatsby from "../../books/the_great_gatsby.md";
+  import PictureOfDorianGray from "../../books/the_picture_of_dorian_gray.md";
+  import AnimalFarm from "../../books/animal_farm.md";
+  import NineteenEightyFour from "../../books/1984.md";
+  import ASeparatePeace from "../../books/a_separate_peace.md";
+  import Night from "../../books/night.md";
+  import BellJar from "../../books/the_bell_jar.md";
+  import Faust from "../../books/faust.md";
+
+  const recommended = true;
+  const books: Array<Book> = [
     {
       coords: [
         [271, 46],
@@ -21,6 +36,7 @@
       ],
       title: "Ship of Theseus",
       author: "J. J. Abrams",
+      component: ShipOfTheseus,
     },
     {
       coords: [
@@ -38,6 +54,8 @@
       ],
       title: "Catch-22",
       author: "Joseph Heller",
+      component: Catch22,
+      recommended: true,
     },
     {
       coords: [
@@ -57,6 +75,7 @@
       ],
       title: "Pride and Prejudice",
       author: "Jane Austen",
+      component: PrideAndPrejudice,
     },
     {
       coords: [
@@ -80,6 +99,7 @@
       ],
       title: "Dracula",
       author: "Bram Stoker",
+      component: Dracula,
     },
     {
       coords: [
@@ -93,6 +113,7 @@
       ],
       title: "Wuthering Heights",
       author: "Emily Bronte",
+      component: WutheringHeights,
     },
     {
       coords: [
@@ -104,6 +125,8 @@
       ],
       title: "The Great Gatsby",
       author: "F. Scott Fitzgerald",
+      component: TheGreatGatsby,
+      recommended: true,
     },
     {
       coords: [
@@ -127,6 +150,8 @@
       ],
       title: "The Picture of Dorian Gray",
       author: "Oscar Wilde",
+      component: PictureOfDorianGray,
+      recommended: true,
     },
     {
       coords: [
@@ -138,6 +163,7 @@
       ],
       title: "Animal Farm",
       author: "George Orwell",
+      component: AnimalFarm,
     },
     {
       coords: [
@@ -149,6 +175,8 @@
       ],
       title: "1984",
       author: "George Orwell",
+      component: NineteenEightyFour,
+      recommended: true,
     },
     {
       coords: [
@@ -159,6 +187,7 @@
       ],
       title: "A Separate Peace",
       author: "John Knowles",
+      component: ASeparatePeace,
     },
     {
       coords: [
@@ -169,6 +198,7 @@
       ],
       title: "Faust",
       author: "Goethe",
+      component: Faust,
     },
     {
       coords: [
@@ -199,6 +229,7 @@
       ],
       title: "The Bell Jar",
       author: "Sylvia Plath",
+      component: BellJar,
     },
   ];
 </script>
@@ -209,3 +240,11 @@
     <BookArea title={book.title} author={book.author} coords={book.coords} />
   {/each}
 </ImgOverlay>
+
+{#each books as book}
+  {#if book.component}
+    <BookReview title={book.title} author={book.author}>
+      <svelte:component this={book.component} />
+    </BookReview>
+  {/if}
+{/each}

@@ -2,7 +2,10 @@
   import type { Book } from "../common";
   import ImgOverlay from "../../components/ImgOverlay.svelte";
   import BookArea from "../../components/BookArea.svelte";
+  import BookReview from "../../components/BookReview.svelte";
+
   import { src, width } from "../../img/01.jpg?webp&metadata";
+
   import HamburgerNav from "../../components/HamburgerNav.svelte";
   import HardToBeAGod from "../../books/hard_to_be_a_god.md";
   import RoadsidePicnic from "../../books/roadside_picnic.md";
@@ -199,3 +202,11 @@
   {/each}
 </ImgOverlay>
 <HamburgerNav left="../00/" down="../11/" />
+
+{#each books as book}
+  {#if book.component}
+    <BookReview title={book.title} author={book.author}>
+      <svelte:component this={book.component} />
+    </BookReview>
+  {/if}
+{/each}

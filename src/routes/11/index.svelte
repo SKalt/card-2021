@@ -1,9 +1,25 @@
 <script lang="ts">
+  import type { Book } from "../common";
   import ImgOverlay from "../../components/ImgOverlay.svelte";
   import BookArea from "../../components/BookArea.svelte";
-  import { src, width } from "../../img/11.jpg?webp&metadata";
   import HamburgerNav from "../../components/HamburgerNav.svelte";
-  import type { Book } from "../common";
+
+  import { src, width } from "../../img/11.jpg?webp&metadata";
+
+  import TheAdventures from "../../books/the_amazing_adventures_of_kavalier_and_clay.md";
+  import YiddishPolicmensUnion from "../../books/the_yiddish_policemens_union.md";
+  import Werewolves from "../../books/werewolves_in_their_youth.md";
+  import TheHelp from "../../books/the_help.md";
+  import TheBookThief from "../../books/the_book_thief.md";
+  import TheDevilWearsPrada from "../../books/the_devil_wears_prada.md";
+  import BookReview from "../../components/BookReview.svelte";
+  import AThousandSplendidSuns from "../../books/a_thousand_splendid_suns.md";
+  import TheKiteRunner from "../../books/the_kite_runner.md";
+  import TheSecretLifeOfBees from "../../books/the_secret_life_of_bees.md";
+  import Freshwater from "../../books/freshwater.md";
+  import HornetsNest from "../../books/the_girl_who_kicked_the_hornets_nest.md";
+  import TheLifeOfPi from "../../books/the_life_of_pi.md";
+
   const books: Array<Book> = [
     {
       coords: [
@@ -19,6 +35,8 @@
       ],
       title: "The Yiddish Policemen's Union",
       author: "Michael Chabon",
+      recommended: true,
+      component: YiddishPolicmensUnion,
     },
     {
       coords: [
@@ -30,6 +48,7 @@
       ],
       title: "Werewolves in their Youth",
       author: "Michael Chabon",
+      component: Werewolves,
     },
     {
       coords: [
@@ -42,8 +61,11 @@
       ],
       title: "The Amazing Adventures of Kavalier and Clay",
       author: "Michael Chabon",
+      component: TheAdventures,
+      recommended: true,
     },
     {
+      component: TheHelp,
       coords: [
         [881, 365],
         [1101, 360],
@@ -68,6 +90,7 @@
         [1125, 418],
       ],
       title: "The Book Thief",
+      component: TheBookThief,
     },
     {
       coords: [
@@ -80,6 +103,7 @@
       ],
       title: "The Secret Life of Bees",
       author: "Sue Monk Kidd",
+      component: TheSecretLifeOfBees,
     },
     {
       coords: [
@@ -91,6 +115,7 @@
       ],
       title: "The Devil Wears Prada",
       author: "Lauren Weisberger",
+      component: TheDevilWearsPrada,
     },
     {
       coords: [
@@ -106,6 +131,7 @@
       ],
       title: "A Thousand Splendid Suns",
       author: "Khaled Hosseni",
+      component: AThousandSplendidSuns,
     },
     {
       coords: [
@@ -117,6 +143,7 @@
       ],
       title: "The Kite Runner",
       author: "Khaled Hosseni",
+      component: TheKiteRunner,
     },
     {
       coords: [
@@ -129,6 +156,7 @@
       ],
       title: "The Life of Pi",
       author: "Yann Martel",
+      component: TheLifeOfPi,
     },
     {
       coords: [
@@ -143,6 +171,7 @@
       ],
       title: "Freshwater",
       author: "Akwaeke Emezi",
+      component: Freshwater,
     },
     {
       coords: [
@@ -160,13 +189,22 @@
       ],
       title: "The Girl Who Kicked the Hornet's Nest",
       author: "Stieg Larson",
+      component: HornetsNest,
     },
   ];
 </script>
 
-<HamburgerNav up="../01/" left="../10/" down="../21/" />
+<HamburgerNav up="../01/" left="../10/" right="../12/" down="../21/" />
 <ImgOverlay {src} mapId="books" pixelWidth={width} alt="Realistic fiction">
   {#each books as book}
     <BookArea title={book.title} author={book.author} coords={book.coords} />
   {/each}
 </ImgOverlay>
+
+{#each books as book}
+  {#if book.component}
+    <BookReview title={book.title} author={book.author}>
+      <svelte:component this={book.component} />
+    </BookReview>
+  {/if}
+{/each}

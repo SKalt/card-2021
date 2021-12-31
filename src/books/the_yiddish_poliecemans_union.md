@@ -1,5 +1,0 @@
----
-library:
-ebook:
-goodreads:
----

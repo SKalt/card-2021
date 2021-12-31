@@ -1,13 +1,28 @@
 <script lang="ts">
+  import type { Book } from "../common";
   import ImgOverlay from "../../components/ImgOverlay.svelte";
   import BookArea from "../../components/BookArea.svelte";
-  import { src, width } from "../../img/20.jpg?webp&metadata";
   import HamburgerNav from "../../components/HamburgerNav.svelte";
-  const books: Array<{
-    title: string;
-    author: string;
-    coords: Array<[number, number]>;
-  }> = [
+
+  import { src, width } from "../../img/20.jpg?webp&metadata";
+
+  import TheValleyofFear from "../../books/the_valley_of_fear.md";
+  import Precious from "../../books/precious.md";
+  import CatAmongthePigeons from "../../books/cat_among_the_pigeons.md";
+  import MurderontheOrientExpress from "../../books/murder_on_the_orient_express.md";
+  import TheABCMurders from "../../books/the_abc_murders.md";
+  import TheHoundoftheBaskervilles from "../../books/the_hound_of_the_baskervilles.md";
+  import ThePurrfectCrime from "../../books/the_purr_fect_crime.md";
+  import AbsoluteFriends from "../../books/absolute_friends.md";
+  import TheTestaments from "../../books/the_testaments.md";
+  import TheHateUGive from "../../books/the_hate_u_give.md";
+  import Years from "../../books/12_years_a_slave.md";
+  import SetAWatchman from "../../books/go_set_a_watchman.md";
+  import ToKillAMockingbird from "../../books/to_kill_a_mockingbird.md";
+  import HeartOfDarkness from "../../books/heart_of_darkness.md";
+  import BookReview from "../../components/BookReview.svelte";
+
+  const books: Array<Book> = [
     {
       coords: [
         [208, 327],
@@ -20,6 +35,7 @@
       ],
       title: "The Valley of Fear",
       author: "Sir Arthur Conan Doyle",
+      component: TheValleyofFear,
     },
     {
       coords: [
@@ -32,6 +48,7 @@
       ],
       title: "Cat Among the Pigeons",
       author: "Agatha Christie",
+      component: CatAmongthePigeons,
     },
     {
       coords: [
@@ -46,6 +63,7 @@
       ],
       title: "Murder on the Orient Express",
       author: "Agatha Christie",
+      component: MurderontheOrientExpress,
     },
     {
       coords: [
@@ -57,6 +75,7 @@
       ],
       title: "The A.B.C. Murders",
       author: "Agatha Christie",
+      component: TheABCMurders,
     },
     {
       coords: [
@@ -68,6 +87,7 @@
       ],
       title: "The Hound of the Baskervilles",
       author: "Sir Arthur Conan Doyle",
+      component: TheHoundoftheBaskervilles,
     },
     {
       coords: [
@@ -82,6 +102,7 @@
       ],
       title: "The Purr-fect Crime",
       author: "",
+      component: ThePurrfectCrime,
     },
     {
       coords: [
@@ -93,6 +114,7 @@
       ],
       title: "Absolute Friends",
       author: "John le Carre",
+      component: AbsoluteFriends,
     },
     {
       coords: [
@@ -106,6 +128,7 @@
       ],
       title: "The Testaments",
       author: "Margaret Atwood",
+      component: TheTestaments,
     },
     {
       coords: [
@@ -118,6 +141,7 @@
       ],
       title: "The Hate U Give",
       author: "",
+      component: TheHateUGive,
     },
     {
       coords: [
@@ -126,8 +150,9 @@
         [1848, 182],
         [1814, 1342],
       ],
-      title: "Precious Sapphire",
-      author: "",
+      title: "Precious",
+      author: "Sapphire",
+      component: Precious,
     },
     {
       coords: [
@@ -138,6 +163,7 @@
       ],
       title: "12 Years a Slave",
       author: "Solomon Northup",
+      component: Years,
     },
     {
       coords: [
@@ -152,6 +178,7 @@
       ],
       title: "Go Set a Watchman",
       author: "Harper Lee",
+      component: SetAWatchman,
     },
     {
       coords: [
@@ -162,6 +189,7 @@
       ],
       title: "To Kill a Mockingbird",
       author: "Harper Lee",
+      component: ToKillAMockingbird,
     },
     {
       coords: [
@@ -178,6 +206,7 @@
       ],
       title: "The Heart of Darkness",
       author: "Joseph Conrad",
+      component: HeartOfDarkness,
     },
   ];
 </script>
@@ -194,3 +223,11 @@
     <BookArea title={book.title} author={book.author} coords={book.coords} />
   {/each}
 </ImgOverlay>
+
+{#each books as book}
+  {#if book.component}
+    <BookReview title={book.title} author={book.author}>
+      <svelte:component this={book.component} />
+    </BookReview>
+  {/if}
+{/each}

@@ -1,14 +1,16 @@
 <script>
-  export let library;
-  export let gooreads;
-  export let ebook;
+  export let goodreads;
 </script>
 
 <!-- markdown content -->
 <slot />
 
-<div class="">
-  <a href={library} target="_blank" referrerpolicy="no-referrer">library</a>
-  <a href={ebook} target="_blank" referrerpolicy="no-referrer">ebook</a>
-  <a href={gooreads} target="_blank" referrerpolicy="no-referrer">gooreads</a>
+<div>
+  <a href={goodreads} target="_blank" referrerpolicy="no-referrer">goodreads</a>
 </div>
+
+<style>
+  div {
+    display: flex;
+  }
+</style>

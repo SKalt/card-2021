@@ -4,11 +4,19 @@
   export let left: string = "";
   export let up: string = "";
   export let down: string = "";
+  const toggle = () => {
+    open = !open;
+    window.history.replaceState(
+      "",
+      document.title,
+      window.location.pathname + window.location.search
+    );
+  };
 </script>
 
 <div class:open>
   <!-- the hamburger: toggles the menu -->
-  <button on:click={() => (open = !open)}>
+  <button on:click={toggle}>
     {#if open}
       &times;
     {:else}
@@ -62,6 +70,7 @@
     top: 0;
     right: 0;
     padding: 1ch;
+    z-index: 1;
   }
   div.open {
     /* centered */

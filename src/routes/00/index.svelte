@@ -242,7 +242,7 @@
         [2544, 2544],
       ],
       title: "Fantastic Voyage (1966)",
-      author: "",
+      author: "Isaac Asimov",
       component: FantasticVoyage,
       recommended: true,
     },

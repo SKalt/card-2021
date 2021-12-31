@@ -3,11 +3,23 @@
   import BookArea from "../../components/BookArea.svelte";
   import { src, width } from "../../img/10.jpg?webp&metadata";
   import HamburgerNav from "../../components/HamburgerNav.svelte";
-  const books: Array<{
-    title: string;
-    author: string;
-    coords: Array<[number, number]>;
-  }> = [
+  import BookReview from "../../components/BookReview.svelte";
+
+  import ReadyPlayerTwo from "../../books/ready_player_two.md";
+  import ReadyPlayerOne from "../../books/ready_player_one.md";
+  import Coraline from "../../books/coraline.md";
+  import GoingPostal from "../../books/going_postal.md";
+  import AnansiBoys from "../../books/anansi_boys.md";
+  import GoodOmens from "../../books/good_omens.md";
+  import TheScrewtapeLetters from "../../books/the_screwtape_letters.md";
+  import TheGoldenCompass from "../../books/the_golden_compass.md";
+  import JSMN from "../../books/jonathan_strange_and_mr_norrel.md";
+  import Amulet from "../../books/the_amulet_of_samarkand.md";
+  import Hobbit from "../../books/the_hobbit.md";
+  import Hiddensee from "../../books/hiddensee.md";
+
+  import type { Book } from "../common";
+  const books: Array<Book> = [
     {
       coords: [
         [233, 318],
@@ -23,6 +35,7 @@
       ],
       title: "Ready Player Two",
       author: "Ernest Cline",
+      component: ReadyPlayerTwo,
     },
     {
       coords: [
@@ -35,6 +48,8 @@
       ],
       title: "Ready Player One",
       author: "Ernest Cline",
+      component: ReadyPlayerOne,
+      recommended: true,
     },
     {
       coords: [
@@ -49,6 +64,7 @@
       ],
       title: "Coraline",
       author: "Neil Gaiman",
+      component: Coraline,
     },
     {
       coords: [
@@ -63,6 +79,7 @@
       ],
       title: "Going Postal",
       author: "Terry Pratchett",
+      component: GoingPostal,
     },
     {
       coords: [
@@ -76,6 +93,7 @@
       ],
       title: "Anansi Boys",
       author: "Neil Gaiman",
+      component: AnansiBoys,
     },
     {
       coords: [
@@ -90,6 +108,7 @@
       ],
       title: "Good Omens",
       author: "Terry Prattchett and Neil Gaiman",
+      component: GoodOmens,
     },
     {
       coords: [
@@ -102,8 +121,9 @@
         [1587, 672],
         [1516, 672],
       ],
-      title: "The Screwtape letters",
+      title: "The Screwtape Letters",
       author: "C.S. Lewis",
+      component: TheScrewtapeLetters,
     },
     {
       coords: [
@@ -115,6 +135,7 @@
       ],
       title: "The Golden Compass",
       author: "Philip Pullman",
+      component: TheGoldenCompass,
     },
     {
       coords: [
@@ -128,6 +149,7 @@
       ],
       title: "Jonathan Strange and Mr. Norell",
       author: "Susanna Clarke",
+      component: JSMN,
     },
     {
       coords: [
@@ -139,6 +161,7 @@
       ],
       title: "The Amulet of Samarkand",
       author: "Jonathan Stroud",
+      component: Amulet,
     },
     {
       coords: [
@@ -152,6 +175,8 @@
       ],
       title: "The Hobbit",
       author: "J.R.R. Tolkien",
+      component: Hobbit,
+      recommended: true,
     },
     {
       coords: [
@@ -168,6 +193,7 @@
       ],
       title: "Hiddensee",
       author: "Gregory Maguire",
+      component: Hiddensee,
     },
   ];
 </script>
@@ -183,3 +209,11 @@
     <BookArea title={book.title} author={book.author} coords={book.coords} />
   {/each}
 </ImgOverlay>
+
+{#each books as book}
+  {#if book.component}
+    <BookReview title={book.title} author={book.author}>
+      <svelte:component this={book.component} />
+    </BookReview>
+  {/if}
+{/each}
