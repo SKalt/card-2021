@@ -1068,8 +1068,8 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
-  rollup@3.26.3:
-    resolution: {integrity: sha512-7Tin0C8l86TkpcMtXvQu6saWH93nhG3dGQ1/+l5V2TDMceTxO7kDiK6GzbfLWNNxqJXm591PcEZUozZm51ogwQ==}
+  rollup@3.29.5:
+    resolution: {integrity: sha512-GVsDdsbJzzy4S/v3dqWPJ7EfvZJfCHiDqe80IyrF59LYuP+e6U1LJoUqeuqRbwAWoMNoXivMNeNAOf5E22VA1w==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -2379,7 +2379,7 @@ snapshots:
     dependencies:
       glob: 7.2.0
 
-  rollup@3.26.3:
+  rollup@3.29.5:
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -2672,7 +2672,7 @@ snapshots:
     dependencies:
       esbuild: 0.18.15
       postcss: 8.4.26
-      rollup: 3.26.3
+      rollup: 3.29.5
     optionalDependencies:
       '@types/node': 17.0.5
       fsevents: 2.3.2
